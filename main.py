@@ -11,8 +11,8 @@ secret_bin: bytes = (binascii.unhexlify(secret))[:32]
 public_bin: bytes = binascii.unhexlify(public)
 message_bin: bytes = binascii.unhexlify(message)
 
-sign: bytes = ed25519.sign(secret_bin, message_bin)
-print(ed25519.verify(public_bin, message_bin, sign))
+normal_sign: bytes = ed25519.sign(secret_bin, message_bin)
+print(ed25519.verify(public_bin, message_bin, normal_sign))
 
 # Blind signatre
 k: int = ed25519.get_k()
