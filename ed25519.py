@@ -173,7 +173,7 @@ def get_r_prim_and_e(secret: bytes, public: bytes, message: bytes, R: tuple, alp
     # e’ = H(M || r’)
     e_prim: int = int.from_bytes(sha512(Rs + message), "little")  # point_compress not sure here
     # e = e’ – b mod q
-    e: int = (e_prim - beta) % q
+    e: int = (e_prim + beta) % q
     return (r_prim, e)
 
 
@@ -186,7 +186,7 @@ def get_s(e, secret: bytes, k: int) -> int:
 
 def get_s_prim(s: tuple, alpha: tuple) -> int:
     # s_pri = s - a mod q
-    s_pri: int = (s - alpha) % q
+    s_pri: int = (s + alpha) % q
     return s_pri
 
 
